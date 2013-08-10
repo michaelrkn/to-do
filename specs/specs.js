@@ -16,3 +16,25 @@ describe("Task", function() {
     testTask.description.should.equal("learn oo");
   });
 });
+
+describe("List", function() {
+  it("starts out with no tasks", function() {
+    var testList = Object.create(List);
+
+    // the initialize() method will set up our empty task list
+    testList.initialize();
+
+    // we use eql() to compare arrays and objects
+    testList.tasks.should.eql([]);
+  });
+
+  it("adds tasks", function() {
+    var testList = Object.create(List);
+    testList.initialize();
+
+    var testTask = Object.create(Task);
+
+    testList.addTask(testTask);
+    testList.tasks.should.eql([testTask]);
+  });
+});

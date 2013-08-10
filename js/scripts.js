@@ -1,7 +1,7 @@
 // we create a variable called Task that is set equal to an object
 // we call this object a "model", since it models some piece of the world we're creating in our code
 var Task = {
-  
+
   // `setDescription` is a method on Task
   // a method is a property whose value is a function
   // `setDescription` accepts an argument and assigns it to the parameter `newDescription`
@@ -16,8 +16,27 @@ var Task = {
 };
 
 
+var List = {
+  initialize: function() {
+
+    // our `initialize()` method creates an empty array to store our tasks in
+    this.tasks = [];
+  },
+
+  addTask: function(taskToAdd) {
+
+    // when we add a task, we simply push it onto the array of tasks
+    this.tasks.push(taskToAdd);
+  }
+};
+
+
 
 $(function() {
+  // create a list to use for the page
+  var myList = Object.create(List);
+  myList.initialize();
+
   // select the form with the id `new-task`, and bind an event listener to submit
   // when the form is submitted, the callback (the function that's passed in as an argument to `.submit()`) is run
   $("form#new-task").submit(function() {
@@ -36,7 +55,10 @@ $(function() {
     // set its description to the user's input
     newTask.setDescription(description);
 
-    // add a new list item to the list of tasks
+    // add it to the list object
+    myList.addTask(newTask);
+
+    // update the page to include the new task
     // retrieve the task's description property (`newTask.description`) and put it in the list item
     $("ol#tasks").append("<li>" + newTask.description + "</li>");
 
