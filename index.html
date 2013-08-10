@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- use bootstrap for styles -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/styles.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- link jquery before my own scrips, so that they have access to jquery -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>To do</title>
+  </head>
+  <body>
+
+    <!-- bootstrap's container class gives the page some nice margins around the edges -->
+    <div class="container">
+      <h1>To do</h1>
+      <h2>Get it and get it done</h2>
+
+      <!-- the form tag creates a form; the form-inline class is a bootstrap style for inline forms -->
+      <form class="form-inline">
+
+        <!-- the "for" tells which input the label tag is labelling - `label for="task"` matches with `input id="task"` -->
+        <label for="task">Enter a new task:</label>
+        <!-- `type="text" means to have a single-line text box -->
+        <input id="task" type="text">
+
+        <button type="submit" class="btn">Add task</button>
+      </form>
+
+      <!-- the id lets us identify where on the page to add our tasks -->
+      <ol id="tasks">
+
+      </ol>
+    </div>
+  </body>
+</html>
