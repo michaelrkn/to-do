@@ -12,6 +12,10 @@ var Task = {
     // so, if we have an object like `myTask = Object.create(Task)`, then `this` would refer to `myTask`
     // `this.description` refers to the property `description` in the object we're currently inside of
     this.description = newDescription;
+  },
+  done: false,
+  markDone: function() {
+    this.done = true;
   }
 };
 
@@ -31,6 +35,18 @@ var List = {
 
   setName: function(nameOfList) {
     this.name = nameOfList;
+  },
+
+  notDoneTasks: function() {
+    return this.tasks.filter(function(task) {
+      return !task.done;
+    });
+  },
+
+  doneTasks: function() {
+    return this.tasks.filter(function(task) {
+      return task.done;
+    });
   }
 };
 
@@ -57,11 +73,16 @@ $(function() {
 
     $("li.list").last().click(function() {
       currentList = newList;
-      $("ol#tasks").empty();
+      $("ol#not-done-tasks").empty();
+      $("ol#done-tasks").empty();
       $(".tasks h2").empty().append(currentList.name);
 
-      currentList.tasks.forEach(function(task) {
-        $("ol#tasks").append("<li>" + task.description + "</li>");
+      currentList.notDoneTasks.forEach(function(task) {
+        $("ol#not-done-tasks").append("<li>" + task.description + "</li>");
+      });
+
+      currentList.doneTasks.forEach(function(task) {
+        $("ol#done-tasks").append("<li>" + task.description + "</li>");
       });
     });
 
@@ -93,7 +114,13 @@ $(function() {
 
     // update the page to include the new task
     // retrieve the task's description property (`newTask.description`) and put it in the list item
-    $("ol#tasks").append("<li>" + newTask.description + "</li>");
+    $("ol#not-done-tasks").append("<li class='task'>" + newTask.description + "</li>");
+
+    $("ol#not-done-tasks li.task").last().click(function() {
+      newTask.markDone();
+      this.remove();
+      $("ol#done-tasks").append("<li class='task'>" + newTask.description + "</li>");      
+    });
 
     // clear out the input field by setting the value to an empty string
     $("input#task-description").val("");

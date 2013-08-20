@@ -15,6 +15,17 @@ describe("Task", function() {
     // this is called an "assertion" - our test asserts that the code should behave in some way
     testTask.description.should.equal("learn oo");
   });
+
+  it("is not done by default", function() {
+    var testTask = Object.create(Task);
+    testTask.done.should.be.false;
+  });
+
+  it("can be marked done", function() {
+    var testTask = Object.create(Task);
+    testTask.markDone();
+    testTask.done.should.be.true;
+  });
 });
 
 describe("List", function() {
@@ -42,5 +53,27 @@ describe("List", function() {
     var testList = Object.create(List);
     testList.setName("school stuff");
     testList.name.should.equal("school stuff");
+  });
+
+  it("tells which tasks are not done", function() {
+    var testList = Object.create(List);
+    testList.initialize();
+    var notDoneTask = Object.create(Task);
+    var doneTask = Object.create(Task);
+    doneTask.markDone();
+    testList.addTask(notDoneTask);
+    testList.addTask(doneTask);
+    testList.notDoneTasks().should.eql([notDoneTask]);
+  });
+
+  it("tells which tasks are  done", function() {
+    var testList = Object.create(List);
+    testList.initialize();
+    var notDoneTask = Object.create(Task);
+    var doneTask = Object.create(Task);
+    doneTask.markDone();
+    testList.addTask(notDoneTask);
+    testList.addTask(doneTask);
+    testList.doneTasks().should.eql([doneTask]);
   });
 });
