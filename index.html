@@ -17,21 +17,44 @@
       <h1>To do</h1>
       <h2>Get it and get it done</h2>
 
-      <!-- the form tag creates a form; the form-inline class is a bootstrap style for inline forms -->
-      <form class="form-inline" id="new-task">
+      <!-- bootstrap's row class is used for its column layout -->
+      <div class="row">
 
-        <!-- the "for" tells which input the label tag is labelling - `label for="task"` matches with `input id="task"` -->
-        <label for="description">Enter a new task:</label>
-        <!-- `type="text" means to have a single-line text box -->
-        <input id="description" type="text">
+        <!-- bootstrap's span classes create a column layout -->
+        <div class="span6">
+          <h2>Lists</h2>
 
-        <button type="submit" class="btn">Add task</button>
-      </form>
+          <form class="form-inline" id="new-list">
+            <label for="list-name">Create a new list:</label>
+            <input id="list-name" type="text">
 
-      <!-- the id lets us identify where on the page to add our tasks -->
-      <ol id="tasks">
+            <button type="submit" class="btn">Add list</button>
+          </form>
 
-      </ol>
+          <ul id="lists">
+          </ul>
+        </div>
+
+        <div class="span6 tasks">
+          <h2></h2>
+
+          <!-- the form tag creates a form; the form-inline class is a bootstrap style for inline forms -->
+          <form class="form-inline" id="new-task">
+
+            <!-- the "for" tells which input the label tag is labelling - `label for="task"` matches with `input id="task"` -->
+            <label for="task-description">Enter a new task:</label>
+            <!-- `type="text" means to have a single-line text box -->
+            <input id="task-description" type="text">
+
+            <button type="submit" class="btn">Add task</button>
+          </form>
+
+          <!-- the id lets us identify where on the page to add our tasks -->
+          <ol id="tasks">
+
+          </ol>
+        </div>
+      </div>
     </div>
   </body>
 </html>

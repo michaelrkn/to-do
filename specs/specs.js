@@ -37,4 +37,10 @@ describe("List", function() {
     testList.addTask(testTask);
     testList.tasks.should.eql([testTask]);
   });
+
+  it("has a name", function() {
+    var testList = Object.create(List);
+    testList.setName("school stuff");
+    testList.name.should.equal("school stuff");
+  });
 });
